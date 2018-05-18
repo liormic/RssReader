@@ -11,6 +11,6 @@ import retrofit2.http.GET;
 
 public interface RssFeederService {
 
-    @GET("photo-of-the-day")
+    @GET("ng/photography/photo-of-the-day/")
     Call<RssFeedWrapper> getRssItemsList();
 }

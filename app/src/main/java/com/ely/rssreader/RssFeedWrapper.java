@@ -6,15 +6,14 @@ import org.simpleframework.xml.Root;
 
 import java.util.List;
 
-
 @Root(name = "rss", strict = false)
 public class RssFeedWrapper {
 
     @ElementList(name="item", inline=true)
     @Path("channel")
-    private List<rssItem> rssItemsList;
+    private List<RssItem> rssItemsList;
 
-    public List<rssItem> getRssItemsList() {
+    public List<RssItem> getRssItemsList() {
         return rssItemsList;
     }
 }

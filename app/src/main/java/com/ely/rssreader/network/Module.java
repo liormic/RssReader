@@ -14,11 +14,11 @@ import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 
 public class Module {
 
-        private static final int TIMEOUTCONNECTINSEC = 100;
-        private static final String BASE_URL_FEEDER = "http://feeds.nationalgeographic.com/ng/photography/photo-of-the-day?xml";
+        private static final int TIMEOUTCONNECTINSEC = 300000;
+        private static final String BASE_URL_FEEDER = "http://feeds.nationalgeographic.com/";
 
 
-        public static Retrofit createRetrofitInstance(OkHttpClient okHttpClient) {
+        public Retrofit createRetrofitInstance(OkHttpClient okHttpClient) {
             return new Retrofit
                         .Builder()
                         .baseUrl(BASE_URL_FEEDER)
@@ -27,7 +27,7 @@ public class Module {
                         .build();
         }
 
-        public  static OkHttpClient generateOkHttpClient (CallInterceptor callInterceptor){
+        public OkHttpClient generateOkHttpClient (CallInterceptor callInterceptor){
             return new OkHttpClient.Builder().connectTimeout(TIMEOUTCONNECTINSEC, TimeUnit.SECONDS)
                     .addInterceptor(callInterceptor)
                     .build();
