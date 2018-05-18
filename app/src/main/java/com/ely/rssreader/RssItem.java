@@ -11,18 +11,6 @@ import org.simpleframework.xml.Root;
 @Root(name = "item", strict = false)
 public class RssItem implements Parcelable {
 
-    @SuppressWarnings("unused")
-    public static final Parcelable.Creator<RssItem> CREATOR = new Parcelable.Creator<RssItem>() {
-        @Override
-        public RssItem createFromParcel(Parcel in) {
-            return new RssItem(in);
-        }
-
-        @Override
-        public RssItem[] newArray(int size) {
-            return new RssItem[size];
-        }
-    };
     private String noTitle = "NG photo";
     private String noDescription = "Looks like we are missing the description";
     @Element(name = "title")
@@ -38,6 +26,19 @@ public class RssItem implements Parcelable {
 
     public RssItem() {
     }
+
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<RssItem> CREATOR = new Parcelable.Creator<RssItem>() {
+        @Override
+        public RssItem createFromParcel(Parcel in) {
+            return new RssItem(in);
+        }
+
+        @Override
+        public RssItem[] newArray(int size) {
+            return new RssItem[size];
+        }
+    };
 
     protected RssItem(Parcel in) {
         noTitle = in.readString();
@@ -98,4 +99,5 @@ public class RssItem implements Parcelable {
         dest.writeString(description);
         dest.writeValue(RssImage);
     }
+
 }

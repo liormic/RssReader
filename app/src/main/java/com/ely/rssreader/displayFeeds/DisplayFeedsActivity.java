@@ -34,7 +34,7 @@ public class DisplayFeedsActivity extends AppCompatActivity implements DisplayFe
         Fresco.initialize(this);
         setContentView(R.layout.activity_display_feeds);
         ButterKnife.bind(this);
-        //Setting up empty Adapter
+        //Setting up empty Adapter to avoid "No Adapter Attached" error
         DisplayFeedAdapter displayFeedAdapter = new DisplayFeedAdapter(rssItemList, this);
         presenter = new DisplayFeedsPresenterImpl();
         presenter.setView(this);

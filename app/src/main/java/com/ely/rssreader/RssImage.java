@@ -7,6 +7,10 @@ import org.simpleframework.xml.Root;
 @Root(name = "enclosure", strict = false)
 public class RssImage implements Parcelable {
 
+    @Attribute(name = "url")
+    private String url;
+
+
     @SuppressWarnings("unused")
     public static final Parcelable.Creator<RssImage> CREATOR = new Parcelable.Creator<RssImage>() {
         @Override
@@ -19,8 +23,6 @@ public class RssImage implements Parcelable {
             return new RssImage[size];
         }
     };
-    @Attribute(name = "url")
-    private String url;
 
     public RssImage() {
 
