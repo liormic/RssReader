@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rss_feed_item_Linear_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:layout_marginBottom="@dimen/rss_feed_item_margin"
     android:layout_marginTop="@dimen/rss_feed_item_margin"
     android:orientation="vertical">
@@ -19,12 +19,12 @@
 
             <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/image"
-                fresco:roundedCornerRadius="1dp"
                 android:layout_width="match_parent"
-                fresco:placeholderImage="@drawable/ng"
+                android:layout_height="match_parent"
                 fresco:failureImage="@drawable/ng"
+                fresco:placeholderImage="@drawable/ng"
                 fresco:retryImage="@drawable/ng"
-                android:layout_height="match_parent" />
+                fresco:roundedCornerRadius="1dp" />
 
 
             <TextView
@@ -46,8 +46,8 @@
     <TextView
         android:id="@+id/expandText"
         style="@style/TextViewStyle"
-        android:textColor="@color/black"
         android:text="@string/description"
+        android:textColor="@color/black"
         />
 
     <TextView

@@ -1,8 +1,6 @@
 package com.ely.rssreader.displayInBrowser;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -32,7 +30,7 @@ public class DisplayInBrowserActivity extends AppCompatActivity implements Displ
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        String url = getIntent().getStringExtra(getString(R.string.article_url_extra));
+        String url = getIntent().getStringExtra(getString(R.string.ARTICLE_URL_EXTRA));
         initWebView(url);
     }
 

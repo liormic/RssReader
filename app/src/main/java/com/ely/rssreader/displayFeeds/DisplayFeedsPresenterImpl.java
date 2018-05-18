@@ -35,7 +35,7 @@ public class DisplayFeedsPresenterImpl implements DisplayFeedsPresenter {
             }
 
             @Override
-            public void onFailure(Call<RssFeedWrapper> call, Throwable t) {
+            public void onFailure(@NonNull Call<RssFeedWrapper> call, @NonNull Throwable t) {
                 view.showNetworkFailureToast();
             }
         });

@@ -1,20 +1,14 @@
 package com.ely.rssreader.network;
 
 import java.util.concurrent.TimeUnit;
-import java.util.logging.XMLFormatter;
 
 import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 
-/**
- * Created by lior on 5/17/18.
- */
-
 public class Module {
 
-        private static final int TIMEOUTCONNECTINSEC = 300000;
+        private static final int TIMEOUTCONNECTINSEC = 30000;
         private static final String BASE_URL_FEEDER = "http://feeds.nationalgeographic.com/";
 
 

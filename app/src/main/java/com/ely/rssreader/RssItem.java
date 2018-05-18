@@ -11,25 +11,42 @@ import org.simpleframework.xml.Root;
 @Root(name = "item", strict = false)
 public class RssItem implements Parcelable {
 
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<RssItem> CREATOR = new Parcelable.Creator<RssItem>() {
+        @Override
+        public RssItem createFromParcel(Parcel in) {
+            return new RssItem(in);
+        }
+
+        @Override
+        public RssItem[] newArray(int size) {
+            return new RssItem[size];
+        }
+    };
     private String noTitle = "NG photo";
     private String noDescription = "Looks like we are missing the description";
-
     @Element(name = "title")
     private String title;
-
     @Element(name = "pubDate")
     private String date;
-
     @Element(name = "link")
     private String linkToArticle;
-
     @Element(name = "description")
     private String description;
-
     @Element(name = "enclosure")
     private RssImage RssImage;
 
     public RssItem() {
+    }
+
+    protected RssItem(Parcel in) {
+        noTitle = in.readString();
+        noDescription = in.readString();
+        title = in.readString();
+        date = in.readString();
+        linkToArticle = in.readString();
+        description = in.readString();
+        RssImage = (RssImage) in.readValue(RssImage.class.getClassLoader());
     }
 
     public String getTitle() {
@@ -47,11 +64,11 @@ public class RssItem implements Parcelable {
         if (TextUtils.isEmpty(description)) {
             description = noDescription;
         }
-        adjustDescprtion();
+        adjustDescription();
         return description;
     }
 
-    private void adjustDescprtion() {
+    private void adjustDescription() {
         description = description.replaceAll("<p>", "");
         String[] trimmedParts = description.split("</p>");
         description = trimmedParts[0];
@@ -64,19 +81,6 @@ public class RssItem implements Parcelable {
     public String getDate() {
         date = date.replace("00:00:00 -0400", "");
         return date;
-    }
-
-
-
-
-    protected RssItem(Parcel in) {
-        noTitle = in.readString();
-        noDescription = in.readString();
-        title = in.readString();
-        date = in.readString();
-        linkToArticle = in.readString();
-        description = in.readString();
-        RssImage = (RssImage) in.readValue(RssImage.class.getClassLoader());
     }
 
     @Override
@@ -94,17 +98,4 @@ public class RssItem implements Parcelable {
         dest.writeString(description);
         dest.writeValue(RssImage);
     }
-
-    @SuppressWarnings("unused")
-    public static final Parcelable.Creator<RssItem> CREATOR = new Parcelable.Creator<RssItem>() {
-        @Override
-        public RssItem createFromParcel(Parcel in) {
-            return new RssItem(in);
-        }
-
-        @Override
-        public RssItem[] newArray(int size) {
-            return new RssItem[size];
-        }
-    };
 }

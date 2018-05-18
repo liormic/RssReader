@@ -1,5 +1,7 @@
 package com.ely.rssreader.network;
 
+import android.support.annotation.NonNull;
+
 import java.io.IOException;
 
 import okhttp3.HttpUrl;
@@ -7,14 +9,11 @@ import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 
-/**
- * Created by lior on 5/17/18.
- */
 
 public class CallInterceptor implements Interceptor {
 
     @Override
-    public Response intercept(Interceptor.Chain chain) throws IOException {
+    public Response intercept(@NonNull Interceptor.Chain chain) throws IOException {
         Request sourceRequest = chain.request();
         HttpUrl sourceHttpUrl = sourceRequest.url();
         HttpUrl httpUrl = sourceHttpUrl.newBuilder()

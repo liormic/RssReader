@@ -1,9 +1,6 @@
 package com.ely.rssreader.displayFeeds;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,9 +21,9 @@ import butterknife.ButterKnife;
 
 public class DisplayFeedsActivity extends AppCompatActivity implements DisplayFeedsView, DisplayFeedAdapter.OnListItemClickListener {
 
-    private List<RssItem> rssItemList = new ArrayList<>();
     private static boolean isNetworkBusy = true;
-    DisplayFeedAdapter displayFeedAdapter;
+    private List<RssItem> rssItemList = new ArrayList<>();
+    private DisplayFeedAdapter displayFeedAdapter;
     private DisplayFeedsPresenterImpl presenter;
     @BindView(R.id.rssItemsRv)
     RecyclerView recyclerView;
@@ -45,7 +42,7 @@ public class DisplayFeedsActivity extends AppCompatActivity implements DisplayFe
         if (savedInstanceState == null) {
             presenter.executeCall();
         } else {
-            rssItemList = savedInstanceState.getParcelableArrayList(getString(R.string.news_feed_list));
+            rssItemList = savedInstanceState.getParcelableArrayList(getString(R.string.NEWS_FEED_LIST));
             initRecyclerView(savedInstanceState);
         }
     }
@@ -53,19 +50,14 @@ public class DisplayFeedsActivity extends AppCompatActivity implements DisplayFe
     @Override
     public void getRssItems(List<RssItem> rssItemList) {
         this.rssItemList = rssItemList;
-        Bundle bundle = null;
-        initRecyclerView(bundle);
-    }
-
-    @Override
-    public void showNetworkFailureToast() {
-        Toast.makeText(this, R.string.request_failure_toast, Toast.LENGTH_LONG).show();
+        initRecyclerView(null);
     }
 
     private void initRecyclerView(Bundle bundle) {
         displayFeedAdapter = new DisplayFeedAdapter(rssItemList, this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(displayFeedAdapter);
 
         if (bundle != null) {
@@ -75,9 +67,14 @@ public class DisplayFeedsActivity extends AppCompatActivity implements DisplayFe
     }
 
     @Override
+    public void showNetworkFailureToast() {
+        Toast.makeText(this, R.string.request_failure_toast, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
     public void onListItemClick(int clickedItemIndex) {
         Intent displayInBrowserIntent = new Intent(this, DisplayInBrowserActivity.class);
-        displayInBrowserIntent.putExtra(getString(R.string.article_url_extra), rssItemList.get(clickedItemIndex).getLinkToArticle());
+        displayInBrowserIntent.putExtra(getString(R.string.ARTICLE_URL_EXTRA), rssItemList.get(clickedItemIndex).getLinkToArticle());
         startActivity(displayInBrowserIntent);
     }
 
@@ -85,7 +82,7 @@ public class DisplayFeedsActivity extends AppCompatActivity implements DisplayFe
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         if (!isNetworkBusy) {
-            outState.putParcelableArrayList(getString(R.string.news_feed_list), (ArrayList<? extends Parcelable>) rssItemList);
+            outState.putParcelableArrayList(getString(R.string.NEWS_FEED_LIST), (ArrayList<? extends Parcelable>) rssItemList);
             outState.putParcelable(getString(R.string.RV_STATE), recyclerView.getLayoutManager().onSaveInstanceState());
         }
     }

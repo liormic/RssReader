@@ -7,31 +7,6 @@ import org.simpleframework.xml.Root;
 @Root(name = "enclosure", strict = false)
 public class RssImage implements Parcelable {
 
-    @Attribute(name = "url")
-    private String url;
-
-    public RssImage() {
-
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    protected RssImage(Parcel in) {
-        url = in.readString();
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(url);
-    }
-
     @SuppressWarnings("unused")
     public static final Parcelable.Creator<RssImage> CREATOR = new Parcelable.Creator<RssImage>() {
         @Override
@@ -44,4 +19,28 @@ public class RssImage implements Parcelable {
             return new RssImage[size];
         }
     };
+    @Attribute(name = "url")
+    private String url;
+
+    public RssImage() {
+
+    }
+
+    protected RssImage(Parcel in) {
+        url = in.readString();
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(url);
+    }
 }

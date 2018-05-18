@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">RssReader</string>
     <string name="request_failure_toast">Sorry :( We could not fetch the items, try again later or check your connection</string>
-    <string name="article_url_extra">article_url</string>
-    <string name="news_feed_list">NEWS_FEED_LIST</string>
-    <string name="RV_STATE">ListState</string>
+    <string name="ARTICLE_URL_EXTRA">ARTICLE_URL_EXTRA</string>
+    <string name="NEWS_FEED_LIST">NEWS_FEED_LIST</string>
+    <string name="RV_STATE">RV_STATE</string>
     <string name="description">Read about it</string>
 </resources>
